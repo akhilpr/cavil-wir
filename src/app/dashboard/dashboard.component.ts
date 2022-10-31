@@ -139,7 +139,9 @@ export class DashboardComponent implements OnInit {
     console.log(finalData);
   }
   cancel() {
-    this.clearAll()
+    if (confirm("uploaded content in the table and file should be cleared!")) {
+      this.clearAll()
+    }
   }
   clearAll() {
     this.operator = ''
