@@ -1,0 +1,135 @@
+<div class="container mar-30">
+    <div class="col-md-12 logout" (click)="logout()">Logout</div>
+    <div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form6Example3">Network Operator Name</label>
+            <input type="text" [(ngModel)]="operator" placehoder="Network Operator Name" id="form6Example3" class="form-control" />
+        </div>
+        <div class="row mb-12">
+            <div class="col-md-3">
+                <div class="form-outline">
+                    <input type="text" [(ngModel)]="zone" id="zone" placeholder="Enter Zone"
+                        class="form-control" />
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-outline">
+                    <input pattern="^[0-9]*$" appOnlyNumber type="text" [(ngModel)]="price" id="form6Example2"
+                        placeholder="$0.00" class="form-control" />
+                </div>
+                <div class="error" *ngIf="price === '0'">Price should not be zero </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-outline">
+                    <button [disabled]="price === '0'" (click)="addZone()" mat-raised-button
+                        color="primary">Add</button>
+                </div>
+            </div>
+            <div *ngIf="zoneData.length" class="col-7 mar-30">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Zone</th>
+                            <th scope="col">Price</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of zoneData">
+                            <td>{{item.zone_name}}</td>
+                            <td>$ {{item.zone_price}}</td>
+                            <td>
+                                <mat-icon (click)="deleteZone(item.zone_name)" class="pointer">delete</mat-icon>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row mb-12  mar-30">
+        <div class="form-group col-md-3">
+            <input type="file" (change)="onFileChange($event)" name="file" id="file" class="input-file">
+            <label for="file" class="btn btn-tertiary js-labelFile">
+                <mat-icon class="icon"> upload</mat-icon>
+                <span class="js-fileName">Choose a file</span>
+            </label>
+        </div>
+        <div class="col-md-3 btn-ad">
+            <div class="form-outline">
+               downlaod
+            </div>
+        </div>
+        <div class="col-md-3 btn-ad">
+                <div class="form-outline">
+                    <button (click)="addTarifZone()" mat-raised-button
+                        color="primary">Add</button>
+                </div>
+            </div>
+    </div>
+        <div class="col-12 mar-30">
+            <ng-container [formGroup]="tarifForm">
+                <ng-container formArrayName="tariff">
+                    <table *ngIf="this.tarifForm.controls.tariff.length" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Zone</th>
+                                <th scope="col">Country</th>
+                                <th scope="col">Network Operator</th>
+                                <th scope="col">Network Code</th>
+                                <th scope="col">Increment</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let item of tarifFieldAsFormArray.controls; let i = index" [formGroupName]="i">
+                                <td>
+                                    <div class="form-outline">
+                                        <input id="zone" [ngClass]="{'border' : zoneCheck(item) === true}" formControlName="zone"
+                                            name="zone" class="form-control" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" formControlName="country" />
+
+                                </td>
+                                <td>
+                                    <div class="form-outline">
+                                        <input type="text" class="form-control" formControlName="network_operator" />
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-outline">
+                                        <input type="text" class="form-control" [ngClass]="{'border' : networkCheck(item) === true}"  formControlName="network_code" />
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" formControlName="increment_type" />
+                                </td>
+                                <td>
+                                    <mat-icon (click)="removeTariff(i)" class="pointer">delete</mat-icon>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-container>
+            </ng-container>
+        </div>
+        <!-- Submit button -->
+        <div class="row mb-12 d-flex f-end d-flex f-end">
+            <div class="col-md-1">
+                <button (click)="submit()" mat-raised-button color="primary">Confirm</button>
+            </div>
+            <div class="col-md-1">
+                <button (click)="cancel()" mat-raised-button color="primary">Cancel</button>
+            </div>
+            
+            
+        </div>
+        
+    </div>
+
+</div>

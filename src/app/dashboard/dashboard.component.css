@@ -1,0 +1,64 @@
+.btn-tertiary {
+    color: #555;
+    padding: 0;
+    line-height: 40px;
+    width: 300px;
+    margin: auto;
+    display: block;
+    border: 2px solid #555;
+}
+
+.btn-tertiary:hover,
+.btn-tertiary:focus {
+    color: #888;
+    border-color: #888;
+}
+
+/* input file style */
+.input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.input-file+.js-labelFile {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 43px 52px 33px 37px;
+    cursor: pointer;
+}
+
+.input-file+.js-labelFile .icon {
+    padding-top: 9px;
+}
+
+.input-file+.js-labelFile.has-file .icon:before {
+    color: #5aac7b;
+}
+
+
+
+.border {
+    border-bottom: solid red !important;
+}
+
+.btn-ad {
+    justify-content: flex-end;
+    margin-top: 40px;
+}
+
+.f-end {
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.logout {
+    text-align: right;
+    font-size: 18px;
+    color: #9869ea;
+    cursor: pointer;
+}
